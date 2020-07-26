@@ -2,7 +2,7 @@
   text-align: center;
   margin-left: 10%;
   margin-right: 10%;
-  margin-top: 5%;
+  margin-top: 3%;
 }
 
 .App-logo {
@@ -38,4 +38,15 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+hr {
+  background-color: #65c525;
+}
+
+html {
+  background-color: #e0fdcc;
+}
+* {
+  font-family: 'Sofia';
 }
