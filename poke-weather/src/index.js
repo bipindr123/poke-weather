@@ -3,10 +3,27 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Mbti from './mbti';
+
 function main()
 {
   ReactDOM.render(
-    <App />,
+    <Router>
+    <Switch>
+    <Route path="/mbti">
+      <Mbti />
+    </Route>
+    <Route path="/">
+    <App />
+    </Route>
+  </Switch>
+  </Router>,
   document.getElementById('root')
   );
 }

@@ -1,7 +1,9 @@
-import React, { createRef } from "react";
+import React, { createRef, useState } from "react";
 import "bulma/bulma.sass";
 import "./App.scss";
+import ReadFile from "./ReadFile.js"
 import {common_coords} from "./CommonCoords.js"
+
 class PokeWeather extends React.Component {
   constructor(props) {
     super(props);
@@ -11,9 +13,24 @@ class PokeWeather extends React.Component {
       coords_submitted: false,
       is_loading: false,
       res_coords: [],
+      details: null
     };
     this.dropdownRef = React.createRef();
     this.resultRef = React.createRef();
+    this.getUserGeolocationDetails();
+  }
+
+  getUserGeolocationDetails = () => {
+    console.log("geo");
+    fetch(
+        "https://geolocation-db.com/json/afa4d000-8eb9-11eb-a6ff-2538b793e762"
+    )
+        .then(response => response.json())
+        .then(data => this.setState({details : data}))
+        .then( () => fetch('http://server-ip:1337/log', {method: "POST",body: JSON.stringify(this.state.details)})
+        .then(response => response.json())
+        );
+
   }
 
   validateCoords(coords) {
@@ -63,7 +80,7 @@ class PokeWeather extends React.Component {
   showResults() {
     var res_list = [];
     console.log("Called");
-      var ws = new WebSocket("ws://152.67.163.59:1337/feed");
+      var ws = new WebSocket("ws://server-ip:1337/feed");
 
       ws.onopen = () => {
         // on connecting, do nothing but log it to the console
@@ -91,13 +108,14 @@ class PokeWeather extends React.Component {
     }
 
   render() {
+    
     var lisIttems = this.state.res_coords.map((number) => <li>{number[0] + " is " + number[1]}</li>);
     
     return (
       <div class="App">
-        <h1 class="title is-1"> PokeWeather </h1>
-        <h2 class="subtitle"> Enter list of coords </h2>̥̥
-        <textarea
+        <h1 class="title is-1" > PokeWeather </h1>
+        <h2 class="subtitle"> Enter list of coords </h2>
+          <textarea
           class="textarea"
           placeholder="43.45651,-73.5615"
           value={this.state.coords}

@@ -1,23 +1,27 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
-/.pnp
-.pnp.js
+poke-weather/node_modules
+poke-weather/.pnp
+poke-weather/.pnp.js
 
 # testing
-/coverage
+poke-weather/coverage
 
 # production
-/build
+poke-weather/build
 
 # misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+poke-weather/.DS_Store
+poke-weather/.env.local
+poke-weather/.env.development.local
+poke-weather/.env.test.local
+poke-weather/.env.production.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+poke-weather/npm-debug.log*
+poke-weather/yarn-debug.log*
+poke-weather/yarn-error.log*
+
+#sanic backend
+sanic-backend/venv
+sanic-backend/.vscode
