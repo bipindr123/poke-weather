@@ -27,9 +27,10 @@ class PokeWeather extends React.Component {
     )
         .then(response => response.json())
         .then(data => this.setState({details : data}))
-        .then( () => fetch('http://server-ip:1337/log', {method: "POST",body: JSON.stringify(this.state.details)})
+        .then( () => fetch('http://localhost:1337/log', {method: "POST",body: JSON.stringify(this.state.details)})
         .then(response => response.json())
-        );
+        )
+        .catch((err)=>console.log(err));
 
   }
 
@@ -80,7 +81,7 @@ class PokeWeather extends React.Component {
   showResults() {
     var res_list = [];
     console.log("Called");
-      var ws = new WebSocket("ws://server-ip:1337/feed");
+      var ws = new WebSocket("ws://localhost:1337/feed");
 
       ws.onopen = () => {
         // on connecting, do nothing but log it to the console

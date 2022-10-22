@@ -1,6 +1,6 @@
 from sanic import Sanic
 from sanic.response import file
-from sanic.websocket import WebSocketProtocol
+from sanic import Websocket
 from sanic import response
 import time
 import requests
@@ -9,7 +9,7 @@ import ipinfo
 import datetime
 import  pytz
 
-handler = ipinfo.getHandler(access_token)
+# handler = ipinfo.getHandler(access_token)
 
 app = Sanic("websocket_example")
 
@@ -45,9 +45,9 @@ async def index(request):
 
 @app.route('/log',methods=("GET","POST"))
 async def index(request):
-    print(str(datetime.datetime.now(pytz.timezone('Asia/Kolkata'))) + " " + str(request.body))
+    print(str(datetime.datetime.now(pytz.timezone('US/Pacific'))) + " " + str(request.body))
     with open('test.html','a') as f:
-        f.write(str(datetime.datetime.now(pytz.timezone('Asia/Kolkata'))) + " " + str(request.body)+"<br>")
+        f.write(str(datetime.datetime.now(pytz.timezone('US/Pacific'))) + " " + str(request.body)+"<br>")
     return response.json({"message":"done"},status=200,headers={"Access-Control-Allow-Origin":"*"})
 
 @app.websocket('/feed')
@@ -61,4 +61,5 @@ async def feed(request, ws):
         await get_weather(data, ws)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", protocol=WebSocketProtocol, port=1337, workers=4, debug=False, access_log=False)
+    # app.add_websocket_route(feed, "/feed")
+    app.run(host="0.0.0.0", port=1337, workers=1, debug=False, access_log=False)
