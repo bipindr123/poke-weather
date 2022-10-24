@@ -6,6 +6,9 @@
 - [Getting Started](#getting_started)
 
 ## About <a name = "about"></a>
+
+Live Website deployed on https://evilgrin.ml
+
 A helpful website for pokemon go users, that allows them to see the weather on any coordiantes.
 
 Website front end is built with React JS and is connected to the backend with exposed REST APIs and Websocket
@@ -27,6 +30,11 @@ running the backed Sanic server using
 ```
 Python3 server.py
 ```
+
+## Screenshots
+
+![o1](./pics/o1.png)
+![o2](./pics/o2.png)
 
 ### Prerequisites
 
