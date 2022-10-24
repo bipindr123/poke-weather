@@ -8,10 +8,13 @@ import json
 import ipinfo
 import datetime
 import  pytz
+#from sanic_cors import CORS, cross_origin
 
 # handler = ipinfo.getHandler(access_token)
 
 app = Sanic("websocket_example")
+#CORS(app, automatic_options=True)
+#app.config.FORWARDED_SECRET = "EvilGrin"
 
 async def get_weather(data, ws):
     coords = data.split("\n")
@@ -43,12 +46,13 @@ async def index(request):
 async def index(request):
     return await file('test.html')
 
-@app.route('/log',methods=("GET","POST"))
+@app.route('/log', methods=("GET","POST"))
 async def index(request):
     print(str(datetime.datetime.now(pytz.timezone('US/Pacific'))) + " " + str(request.body))
     with open('test.html','a') as f:
         f.write(str(datetime.datetime.now(pytz.timezone('US/Pacific'))) + " " + str(request.body)+"<br>")
-    return response.json({"message":"done"},status=200,headers={"Access-Control-Allow-Origin":"*"})
+    return response.json({"message":"done"},status=200)
+
 
 @app.websocket('/feed')
 async def feed(request, ws):
@@ -61,5 +65,4 @@ async def feed(request, ws):
         await get_weather(data, ws)
 
 if __name__ == "__main__":
-    # app.add_websocket_route(feed, "/feed")
-    app.run(host="0.0.0.0", port=1337, workers=1, debug=False, access_log=False)
+    app.run(host="0.0.0.0", port=1337, workers=1, access_log=False)

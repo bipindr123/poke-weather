@@ -24,9 +24,9 @@ class Mbti extends Component {
         .then(response => response.json())
         .then(data => {data.source = "mbti"; return data})
         .then(data => this.setState({details : data}))
-        .then( () => fetch('http://server-ip:1337/log', {method: "POST",body: JSON.stringify(this.state.details)})
-        .then(response => response.json())
-        );
+        .then( () => fetch('https://evilgrin.ml/api/log', {method: "POST",body: JSON.stringify(this.state.details)})
+        .then(response => response.json()))
+        .catch((err)=>console.log(err));
 
   }
 
@@ -94,7 +94,7 @@ class Mbti extends Component {
             <div class="control">
               <label class="radio">
                 <input onChange={this.handleAnswer} value="1" type="radio" name="answer"></input>
-                Absolutely fucking not
+                Absolutely not
               </label>
               <label class="radio">
                 <input onChange={this.handleAnswer} value="2" type="radio" name="answer"></input>

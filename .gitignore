@@ -4,7 +4,7 @@
 poke-weather/node_modules
 poke-weather/.pnp
 poke-weather/.pnp.js
-
+poke-weather/public/.well-known
 # testing
 poke-weather/coverage
 
