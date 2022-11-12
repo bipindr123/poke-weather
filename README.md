@@ -13,7 +13,7 @@ A helpful website for pokemon go users, that allows them to see the weather on a
 
 Website front end is built with React JS and is connected to the backend with exposed REST APIs and Websocket
 
-Backend with made with Sanic - a fast server python framework
+Backend with made with Sanic - a fast server python framework running as a microservice on a docker container
 
 The full stack application is deployed with Nginx as a reverse proxy
 
