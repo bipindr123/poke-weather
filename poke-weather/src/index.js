@@ -7,9 +7,9 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import Mbti from './mbti';
+import Nsfw from './nsfw';
 
 function main()
 {
@@ -18,6 +18,9 @@ function main()
     <Switch>
     <Route path="/mbti">
       <Mbti />
+    </Route>
+    <Route path="/nsfw">
+      <Nsfw />
     </Route>
     <Route path="/">
     <App />
